@@ -1,8 +1,0 @@
-# Secrets
-.env
-*.secret
-zenodo_token.txt
-
-# OS
-.DS_Store
-Thumbs.db
