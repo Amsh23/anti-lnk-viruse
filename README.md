@@ -1,64 +1,64 @@
 # Anti-LNK Viruse (USB Shortcut Fix)
 
-ابزار **Anti‑LNK** یک اسکریپت ساده برای پاک‌سازی فلش‌های آلوده به ویروس‌های شرتکات (LNK) است. این اسکریپت با تأیید دستی کاربر، فایل‌های میانبر مخرب را حذف کرده، `autorun.inf` را پاک می‌کند و فایل‌های مخفی را دوباره قابل مشاهده می‌کند.
+**Anti‑LNK** is a simple PowerShell script to clean USB drives infected by shortcut (LNK) malware. With explicit user confirmation, it removes malicious shortcut files, deletes `autorun.inf`, and restores hidden files.
 
-> ⚠️ هشدار: این ابزار روی فایل‌های فلش شما تغییر ایجاد می‌کند. قبل از اجرا از اطلاعات مهم نسخه پشتیبان بگیرید.
+> ⚠️ Warning: This tool modifies files on your USB drive. Back up important data before running it.
 
-## قابلیت‌ها
+## Features
 
-- غیرفعال‌کردن AutoPlay/AutoRun در ویندوز (در سطح سیستم).
-- شناسایی خودکار فلش‌های USB.
-- حذف فایل‌های `.lnk` با تأیید کاربر.
-- حذف `autorun.inf` با تأیید کاربر.
-- بازگردانی فایل‌های مخفی و سیستمی.
+- Disables Windows AutoPlay/AutoRun system-wide.
+- Automatically detects removable USB drives.
+- Deletes `.lnk` files with user confirmation.
+- Deletes `autorun.inf` with user confirmation.
+- Restores hidden/system file attributes.
 
-## پیش‌نیازها
+## Requirements
 
-- ویندوز 10/11
-- PowerShell با دسترسی اجرای اسکریپت (اسکریپت خودش execution policy را برای همان سشن تنظیم می‌کند.)
+- Windows 10/11
+- PowerShell (the script sets the execution policy for the current session only)
 
-## نحوه اجرا
+## Usage
 
-1. فایل `anti-lnk.ps1` را دانلود کنید.
-2. روی PowerShell راست‌کلیک و **Run as Administrator** را انتخاب کنید.
-3. اسکریپت را اجرا کنید:
+1. Download `anti-lnk.ps1`.
+2. Right‑click PowerShell and choose **Run as Administrator**.
+3. Run the script:
 
 ```powershell
 ./anti-lnk.ps1
 ```
 
-4. فلش موردنظر را انتخاب کنید و به سوالات پاسخ دهید.
+4. Select the target USB drive and answer the prompts.
 
-## اجرای نسخهٔ ساده با run.cmd
+## Quick run with `run.cmd`
 
-فایل `run.cmd` برای اجرا سریع در ویندوز اضافه شده است. می‌توانید آن را با راست‌کلیک و **Run as Administrator** اجرا کنید.
+`run.cmd` is included for quick execution on Windows. Right‑click it and choose **Run as Administrator**.
 
-## آپلود در Zenodo (انتشار نسخه)
+## Zenodo upload (release publishing)
 
-برای ساخت نسخه و آپلود به Zenodo یک اسکریپت آماده شده است که **توکن را از محیط می‌خواند** و هیچ توکنی داخل ریپو ذخیره نمی‌شود.
+A helper script is included to upload a release to Zenodo. The script **reads the token from the environment** so no token is stored in the repo.
 
-- راه‌اندازی توکن (در ترمینال PowerShell):
+- Set the token (PowerShell):
 
 ```powershell
-$env:ZENODO_TOKEN = "توکن-خودتان"
+$env:ZENODO_TOKEN = "your-token"
 ```
 
-- سپس اجرای اسکریپت آپلود:
+- Run the upload:
 
 ```powershell
 ./zenodo-upload.ps1 -FilePath .\anti-lnk.ps1 -Title "Anti-LNK Viruse" -Description "USB shortcut fix" -Creators "Your Name"
 ```
 
-## نکات امنیتی
+## Security notes
 
-- این ابزار **هیچ** تغییری بدون تأیید کاربر انجام نمی‌دهد.
-- همیشه قبل از پاکسازی فایل‌ها، از داده‌های خود بکاپ بگیرید.
-- برای فلش‌های ناشناس از سیستم‌های جداگانه (sandbox) استفاده کنید.
+- The tool **never** changes files without your confirmation.
+- Always back up data before cleaning.
+- Use isolated/sandboxed systems for untrusted USB drives.
 
-## مشارکت
+## Contributing
 
-Pull Request و پیشنهادها خوش‌آمد است. لطفاً تغییرات را با توضیح کامل ارسال کنید.
+Pull requests and suggestions are welcome. Please include clear descriptions of your changes.
 
-## مجوز
+## License
 
-این پروژه تحت مجوز موجود در فایل [LICENSE](./LICENSE) منتشر شده است.
+Released under the license in [LICENSE](./LICENSE).
